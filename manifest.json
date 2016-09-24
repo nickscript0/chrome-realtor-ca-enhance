@@ -1,0 +1,13 @@
+{
+    "name": "Realtor.ca Tweaks",
+    "version": "0.1",
+    "description": "Improvements to realtor.ca's home listing page.",
+    "content_scripts": [{
+        "matches": [
+            "https://www.realtor.ca/*",
+            "http://matrix.crebtools.com/*"
+        ],
+        "js": ["main.js"]
+    }],
+    "manifest_version": 2
+}
