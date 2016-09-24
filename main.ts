@@ -32,18 +32,18 @@ function handleRealtor() {
   if (!price_el) return;
   const price = price_el
     .textContent
-    .trimLeft().split(' ')[0].trim() // To handle cases where the extension has already run on this page
+    .trim().split(' ')[0].trim() // To handle cases where the extension has already run on this page
     .split('$')[1].replace(',', '');
   const condo_fees_el = document.getElementById("m_property_dtl_data_val_monthlymaintenancefees");
   let condo_fees = 0;
   if (condo_fees_el) {
-    condo_fees = condo_fees_el
+    condo_fees = +condo_fees_el
       .textContent
       .replace(',', '')
       .split('$')[1]
       .split(' Monthly')[0];
   }
-  const sqft = document.getElementById("m_property_dtl_blddata_val_interiorfloorspace")
+  const sqft = +document.getElementById("m_property_dtl_blddata_val_interiorfloorspace")
     .textContent
     .split(' sqft')[0];
 
@@ -59,7 +59,7 @@ function handleRealtor() {
 function getMetricElements(price, fee, sqft) {
   const fee_per_sqft = (fee / sqft).toFixed(2);
   const price_per_sqft = Math.round(price / sqft);
-  return metrics = [
+  return [
     `<font color="blue">Price: $${price_per_sqft}/sqft</font>`,
     `<font color="dodgerblue">Fees: $${fee_per_sqft}/sqft</font>`,
     `<font color="deepskyblue">Size: ${sqft} sqft</font>`
