@@ -1,11 +1,11 @@
 function main() {
-  handleRealtor()
+  handleRealtor();
   handleCrebTools();
 }
 
 function handleCrebTools() {
   // Returns "523/Monthly so need to split"
-  const condo_fee_el = _getCrebLabelValue('label d1240m16', 'Condo Fee')
+  const condo_fee_el = _getCrebLabelValue('label d1240m16', 'Condo Fee');
   if (!condo_fee_el) {
     console.log('Unable to find condo fee element, exiting.');
     return;
@@ -51,7 +51,7 @@ function _getRealtorCondoFees(): number | null {
 }
 
 function _getRealtorSqft(): number | null {
-  const sqft_el = document.getElementById("m_property_dtl_blddata_val_interiorfloorspace")
+  const sqft_el = document.getElementById("m_property_dtl_blddata_val_interiorfloorspace");
   if (sqft_el === null || sqft_el.textContent === null) return null;
   return +sqft_el
     .textContent
@@ -69,7 +69,7 @@ function handleRealtor() {
 
   // Update DOM
   if (condo_fees === null) {
-    const condo_fees_el = document.getElementById("m_property_dtl_data_val_monthlymaintenancefees"); 
+    const condo_fees_el = document.getElementById("m_property_dtl_data_val_monthlymaintenancefees");
     if (condo_fees_el) condo_fees_el.innerHTML += ` <font color="blue">($${fee_per_sqft}/sqft)</font>`;
   }
   price_el.innerHTML += ` (${getMetricElements(price, condo_fees, sqft).join(', ')})`;
