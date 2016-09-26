@@ -16,7 +16,6 @@ function handleCrebTools() {
   const price = price_el.textContent.trim().replace('$', '').replace(',', '');
 
   // Update DOM
-  const metrics = getMetricElements(price, condo_fee, sqft);
   const metrics_el = `<div style="font-size: 11px">(${getMetricElements(price, condo_fee, sqft).join(', ')})</div>`;
   document.getElementsByClassName('formula field d1240m15')[1].innerHTML = metrics_el;
 }
@@ -25,10 +24,6 @@ function _getCrebLabelValue(label_class, label_text) {
   let el = document.getElementsByClassName(label_class);
   return Array.prototype.filter.call(el, x => (x.textContent.search(label_text) > -1))[0]
     .parentElement.nextElementSibling.children;
-}
-
-function _textContentOrDefault(el: HTMLElement, default_str: string): string {
-  return (el.textContent) ? el.textContent : default_str;
 }
 
 function _getRealtorPrice(): number | null {
